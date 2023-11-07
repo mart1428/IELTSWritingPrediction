@@ -18,12 +18,9 @@ def retrieve_data():
     data = data[['Task_Type', 'Question', 'Essay', 'Overall']]
     return data
 
-def tokenize_data(data: pd.DataFrame, max_e_length = 300, max_q_length = 128, embed = None):
+def tokenize_data(data: pd.DataFrame, max_e_length = 300, max_q_length = 128):
     q = data['Question'].tolist()
     e = data['Essay'].tolist()
-
-    if embed == None:
-        embed = GloVe(name = '6B', dim = '50', cache = 'C:\\Users\\chris\\Documents\\Online Courses & Personal Projects\\Portfolio\\RNN-LSTM\\.vector_cache')
     
     essay_temp = []
     question_temp = []
@@ -43,7 +40,7 @@ def tokenize_data(data: pd.DataFrame, max_e_length = 300, max_q_length = 128, em
     data['E_tokenized'] = essay_temp
 
 
-    return data, embed
+    return data
                                
 def get_data_loader(data, batch_size: int = 128):
     data = data[(data['Overall'] != 1.0) & (data.Overall != 3.0) & (data.Overall != 3.5)]
@@ -67,8 +64,6 @@ def get_data_loader(data, batch_size: int = 128):
     split2 = .95
 
     for k,v in d.items():
-        # if len(v) >=100:
-            # v = v[:100]
         train_indices += v[:int(split1*len(v))]
         val_indices += v[int(split1*len(v)) : int(split2*len(v))]
         test_indices += v[int(split2*len(v)):]

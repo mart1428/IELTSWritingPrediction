@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
 
     data = retrieve_data()
-    tokenized_data,  embed = tokenize_data(data)
+    tokenized_data = tokenize_data(data)
     train_loader, val_loader, test_loader = get_data_loader(tokenized_data, batch_size)
 
     model = IELTSScorer(2)
