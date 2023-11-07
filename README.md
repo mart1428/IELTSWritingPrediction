@@ -35,7 +35,7 @@ With a small dataset (~1400 data points), it is hard to create a model that gene
 ### 4.1 Data Preprocessing
 The data is imbalanced in for each score range which add a layer of difficulty when training the data. It was originally splitted into scores of 4.5, 5.0, 5.5, 6.0,..., 9.0. However, it was visible that the model could not generalize even on the training set. Thus, a more extreme approach was taken where the data was splitted into 2 classes: <6.5 and >=6.5. The reason behind the specific 6.5 score is that Academic Institutions mostly look for international students who are able to obtain scores a minimal of 6.0 in writing and 6.5 average in all categories. As the data 
 
-![image](https://github.com/mart1428/IELTSWritingPrediction/assets/60026413/ead64a22-e736-4e43-9f24-16e147d7d692)
+![image](https://github.com/mart1428/IELTSWritingPrediction/blob/main/images/Figure_1%20Data%20Distribution.png)
 
 
 
@@ -46,11 +46,11 @@ A **LSTM** model was then created as it is a more complex model and it can bette
 A 6B **GloVe** embedding with 50 dimensions was also used to tokenize the data and obtain its vectors. The model was able to obtain a better Training and Validation loss but the accuracy was still ~65% in validation set.
 
 A **Transfer Learning** approach was then used to extract features from the input data. A **DistilBERT** Transformer was then used as it was a smaller variation on **BERT**. In theory, the model should be able to capture the context and features from the essays even though the size of the dataset is small. The transformer was then accompanied by 4 fully connected layers of size 64. 
-![image](https://github.com/mart1428/IELTSWritingPrediction/assets/60026413/76e06e65-00ff-4a7a-9e17-000194ff459c)
+![image](https://github.com/mart1428/IELTSWritingPrediction/blob/main/images/Figure_2%20Model%20Layers.png)
 
 The model reached better losses and accuracies on training, validation and test set. With about 0.714 loss and 73.61% accuracy on test set, the model reached its best state without overfitting and underfitting the dataset. 
 
-![image](https://github.com/mart1428/IELTSWritingPrediction/assets/60026413/0860811f-5c4b-4404-a48e-9284d522a562)
+![image](https://github.com/mart1428/IELTSWritingPrediction/blob/main/images/Figure_3%20Results.png)
 
 ## 5.0 Next Steps
 
